@@ -15,7 +15,7 @@ def crear_superuser(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('core', '0005_nombre_de_tu_ultima_migracion'),
+        ('core', '0005_carrito_itemcarrito'),
     ]
 
     operations = [
