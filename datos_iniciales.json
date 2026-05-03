@@ -1,0 +1,345 @@
+[
+{
+  "model": "core.categoria",
+  "pk": 1,
+  "fields": {
+    "nombre": "Hamburguesas",
+    "imagen": "categorias/Hamburguesas_Kv4sKgv.png",
+    "activo": true
+  }
+},
+{
+  "model": "core.categoria",
+  "pk": 2,
+  "fields": {
+    "nombre": "Pizzas",
+    "imagen": "categorias/Pizzas_4x9MEdN.png",
+    "activo": true
+  }
+},
+{
+  "model": "core.categoria",
+  "pk": 3,
+  "fields": {
+    "nombre": "Pollos",
+    "imagen": "categorias/Pollos_7g3Lz5O.png",
+    "activo": true
+  }
+},
+{
+  "model": "core.categoria",
+  "pk": 4,
+  "fields": {
+    "nombre": "Completos",
+    "imagen": "categorias/Completos_AZTvJAc.png",
+    "activo": true
+  }
+},
+{
+  "model": "core.local",
+  "pk": 1,
+  "fields": {
+    "nombre": "Mc Donalds",
+    "categoria": 1,
+    "imagen": "locales/Mc_logo.png",
+    "descripcion": "",
+    "calificacion": "4.5",
+    "tiempo_entrega": "25-35 min",
+    "activo": true
+  }
+},
+{
+  "model": "core.local",
+  "pk": 3,
+  "fields": {
+    "nombre": "Wendys",
+    "categoria": 1,
+    "imagen": "locales/Wendys_logo_eXsgJzi.png",
+    "descripcion": "",
+    "calificacion": "4.5",
+    "tiempo_entrega": "25-35 min",
+    "activo": true
+  }
+},
+{
+  "model": "core.local",
+  "pk": 4,
+  "fields": {
+    "nombre": "Papa Johns",
+    "categoria": 2,
+    "imagen": "locales/Papa_john_logo.png",
+    "descripcion": "",
+    "calificacion": "4.5",
+    "tiempo_entrega": "25-35 min",
+    "activo": true
+  }
+},
+{
+  "model": "core.local",
+  "pk": 5,
+  "fields": {
+    "nombre": "Under Pizza",
+    "categoria": 2,
+    "imagen": "locales/underpizza_logo.png",
+    "descripcion": "",
+    "calificacion": "4.5",
+    "tiempo_entrega": "25-35 min",
+    "activo": true
+  }
+},
+{
+  "model": "core.local",
+  "pk": 6,
+  "fields": {
+    "nombre": "Kentucky Fried Chicken",
+    "categoria": 3,
+    "imagen": "locales/kfc_logo.png",
+    "descripcion": "",
+    "calificacion": "4.5",
+    "tiempo_entrega": "25-35 min",
+    "activo": true
+  }
+},
+{
+  "model": "core.local",
+  "pk": 7,
+  "fields": {
+    "nombre": "Doggis",
+    "categoria": 4,
+    "imagen": "locales/Doggis_logo.png",
+    "descripcion": "",
+    "calificacion": "4.5",
+    "tiempo_entrega": "25-35 min",
+    "activo": true
+  }
+},
+{
+  "model": "core.local",
+  "pk": 8,
+  "fields": {
+    "nombre": "Burger King",
+    "categoria": 1,
+    "imagen": "locales/burguer_logo.png",
+    "descripcion": "",
+    "calificacion": "4.5",
+    "tiempo_entrega": "25-35 min",
+    "activo": true
+  }
+},
+{
+  "model": "core.sucursal",
+  "pk": 1,
+  "fields": {
+    "local": 1,
+    "nombre": "Mc Donald´s - Maipu",
+    "region": "RM",
+    "comuna": "Maipú",
+    "direccion": "Av. 05 de Abril 81",
+    "activo": true
+  }
+},
+{
+  "model": "core.sucursal",
+  "pk": 2,
+  "fields": {
+    "local": 1,
+    "nombre": "Mc Donald´s - Providencia",
+    "region": "RM",
+    "comuna": "Providencia",
+    "direccion": "Av. Providencia 2661",
+    "activo": true
+  }
+},
+{
+  "model": "core.sucursal",
+  "pk": 5,
+  "fields": {
+    "local": 3,
+    "nombre": "Wendys - Puente Alto",
+    "region": "RM",
+    "comuna": "Puente Alto",
+    "direccion": "Av. Concha y Toro 555",
+    "activo": true
+  }
+},
+{
+  "model": "core.sucursal",
+  "pk": 6,
+  "fields": {
+    "local": 3,
+    "nombre": "Wendys - Valparaiso",
+    "region": "V",
+    "comuna": "Valparaíso",
+    "direccion": "Av. Argentina 540",
+    "activo": true
+  }
+},
+{
+  "model": "core.sucursal",
+  "pk": 9,
+  "fields": {
+    "local": 4,
+    "nombre": "Papa Johns - Santiago",
+    "region": "RM",
+    "comuna": "Santiago",
+    "direccion": "Serrano 30",
+    "activo": true
+  }
+},
+{
+  "model": "core.sucursal",
+  "pk": 11,
+  "fields": {
+    "local": 4,
+    "nombre": "Papa Johns - Rancagua",
+    "region": "VI",
+    "comuna": "Rancagua",
+    "direccion": "Recreo 620",
+    "activo": true
+  }
+},
+{
+  "model": "core.sucursal",
+  "pk": 12,
+  "fields": {
+    "local": 5,
+    "nombre": "UnderPizza - Maipu",
+    "region": "RM",
+    "comuna": "Maipú",
+    "direccion": "Av. Américo Vespucio 399, local 13",
+    "activo": true
+  }
+},
+{
+  "model": "core.sucursal",
+  "pk": 13,
+  "fields": {
+    "local": 5,
+    "nombre": "UnderPizza - Concepcion",
+    "region": "VIII",
+    "comuna": "Concepción",
+    "direccion": "Av. Libertador Gral. Bernardo O'Higgins 716",
+    "activo": true
+  }
+},
+{
+  "model": "core.sucursal",
+  "pk": 14,
+  "fields": {
+    "local": 6,
+    "nombre": "KFC - Providencia",
+    "region": "RM",
+    "comuna": "Providencia",
+    "direccion": "Av. Andrés Bello 2433, Local 5533",
+    "activo": true
+  }
+},
+{
+  "model": "core.sucursal",
+  "pk": 15,
+  "fields": {
+    "local": 6,
+    "nombre": "KFC - Temuco",
+    "region": "IX",
+    "comuna": "Temuco",
+    "direccion": "Hochstetter 550",
+    "activo": true
+  }
+},
+{
+  "model": "core.sucursal",
+  "pk": 16,
+  "fields": {
+    "local": 7,
+    "nombre": "Doggis - Santiago",
+    "region": "RM",
+    "comuna": "Santiago",
+    "direccion": "Av. Alameda Libertador Bernardo O'Higgins 644",
+    "activo": true
+  }
+},
+{
+  "model": "core.sucursal",
+  "pk": 17,
+  "fields": {
+    "local": 7,
+    "nombre": "Doggis - Talca",
+    "region": "VII",
+    "comuna": "Talca",
+    "direccion": "2 Sur 3191",
+    "activo": true
+  }
+},
+{
+  "model": "core.sucursal",
+  "pk": 18,
+  "fields": {
+    "local": 8,
+    "nombre": "Burger King - Puente Alto",
+    "region": "RM",
+    "comuna": "Puente Alto",
+    "direccion": "Av. Concha y Toro 486",
+    "activo": true
+  }
+},
+{
+  "model": "core.sucursal",
+  "pk": 19,
+  "fields": {
+    "local": 8,
+    "nombre": "Burger King - Talca",
+    "region": "VII",
+    "comuna": "Talca",
+    "direccion": "Av. Circunvalación Oriente 1055",
+    "activo": true
+  }
+},
+{
+  "model": "core.productomenu",
+  "pk": 1,
+  "fields": {
+    "sucursal": 2,
+    "nombre": "Combo 1/4 libra con queso",
+    "descripcion": "Hamburguesa 1/4 de libra con queso, con papas medianas y bebida mediana a elección.",
+    "precio": 14990,
+    "imagen": "productos/cuarto_de_libra.png",
+    "disponible": true
+  }
+},
+{
+  "model": "core.productomenu",
+  "pk": 2,
+  "fields": {
+    "sucursal": 1,
+    "nombre": "Combo 1/4 libra con queso",
+    "descripcion": "Hamburguesa 1/4 de libra con queso, con papas medianas y bebida mediana a elección.",
+    "precio": 12990,
+    "imagen": "productos/cuarto_de_libra_sSqoljz.png",
+    "disponible": true
+  }
+},
+{
+  "model": "core.productomenu",
+  "pk": 3,
+  "fields": {
+    "sucursal": 1,
+    "nombre": "Cajita Feliz",
+    "descripcion": "01 hamburguesa con queso pequeña, papas pequeñas, bebida pequeña y juguete a eleccion",
+    "precio": 3990,
+    "imagen": "productos/Cajita_feliz.png",
+    "disponible": true
+  }
+},
+{
+  "model": "core.productomenu",
+  "pk": 4,
+  "fields": {
+    "sucursal": 2,
+    "nombre": "Cajita Feliz",
+    "descripcion": "01 hamburguesa pequeña, 01 bebida pequeña, 01 papa pequeña y juguete a eleccion",
+    "precio": 3990,
+    "imagen": "productos/Cajita_feliz_j40k7Hr.png",
+    "disponible": true
+  }
+}
+]
