@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<main class="contenido">
+    <h2>{{ sucursal.local.nombre }}</h2>
+    <p>{{ sucursal.nombre }} - {{ sucursal.comuna }}</p>
+    <p>{{ sucursal.direccion }}</p>
+
+    <h2>Menú disponible</h2>
+
+    <section class="tarjetas-locales">
+
+        {% for producto in productos %}
+            <div class="tarjeta">
+
+                {% if producto.imagen %}
+                    <img src="{{ producto.imagen.url }}" class="imagen-local-real">
+                {% else %}
+                    <div class="imagen-local">🍽️</div>
+                {% endif %}
+
+                <h3>{{ producto.nombre }}</h3>
+                <p>{{ producto.descripcion }}</p>
+                <span>${{ producto.precio }}</span>
+                
+                <a href="{% url 'agregar_carrito' producto.id %}" class="btn-agregar">
+                    Agregar
+                </a>
+                
+            </div>
+        {% empty %}
+            <p>Esta sucursal no tiene productos disponibles.</p>
+        {% endfor %}
+
+    </section>
+</main>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<main class="contenido">
+    <h2>Explorar FoodPlease</h2>
+
+    <section class="categorias">
+
+        {% for categoria in categorias %}
+            <a href="{% url 'locales_por_categoria' categoria.id %}" class="card-categoria-link">
+                <div class="card-categoria">
+
+                    {% if categoria.imagen %}
+                        <img src="{{ categoria.imagen.url }}" class="img-categoria">
+                    {% else %}
+                        <div class="placeholder">🍽️</div>
+                    {% endif %}
+
+                    <p>{{ categoria.nombre }}</p>
+                </div>
+            </a>
+        {% empty %}
+            <p>No hay categorías disponibles.</p>
+        {% endfor %}
+
+    </section>
+
+    <a href="{% url 'locales' %}" class="btn-ver-todos">
+        Ver todos los locales
+    </a>
+</main>
+
+{% endblock %}

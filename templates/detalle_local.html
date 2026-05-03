@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<main class="contenido">
+    <h2>{{ local.nombre }}</h2>
+
+    <section class="tarjetas-locales">
+        {% for sucursal in sucursales %}
+        <a href="{% url 'detalle_sucursal' sucursal.id %}" class="tarjeta-link">
+            <div class="tarjeta">
+                <h3>{{ sucursal.nombre }}</h3>
+                <p><strong>Región:</strong> {{ sucursal.get_region_display }}</p>
+                <p><strong>Comuna:</strong> {{ sucursal.comuna }}</p>
+                <p><strong>Dirección:</strong> {{ sucursal.direccion }}</p>
+            </div>
+        </a>
+        {% empty %}
+            <p>Este local no tiene sucursales disponibles.</p>
+        {% endfor %}
+    </section>
+</main>
+
+{% endblock %}

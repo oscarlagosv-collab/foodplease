@@ -1,0 +1,52 @@
+#header {
+    background: #e60023 !important;
+}
+
+#branding h1,
+#branding h1 a,
+#site-name,
+#site-name a {
+    color: white !important;
+}
+
+.login #header {
+    background: #e60023 !important;
+}
+
+.login #branding h1,
+.login #site-name {
+    color: white !important;
+}
+
+.button,
+input[type=submit],
+input[type=button],
+.submit-row input,
+.login .submit-row input {
+    background: #e60023 !important;
+    color: white !important;
+    border: none !important;
+}
+
+.button:hover,
+input[type=submit]:hover,
+input[type=button]:hover,
+.submit-row input:hover {
+    background: #b8001c !important;
+}
+
+.module h2,
+.module caption,
+.inline-group h2 {
+    background: #e60023 !important;
+    color: white !important;
+}
+
+div.breadcrumbs {
+    background: #b8001c !important;
+    color: white !important;
+}
+
+div.breadcrumbs a {
+    color: white !important;
+}

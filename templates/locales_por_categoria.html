@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<main class="contenido-categoria">
+
+    <aside class="categoria-lateral">
+        <h2>{{ categoria.nombre }}</h2>
+        <a href="{% url 'locales' %}" class="btn-ver-todos">
+            Ver todos los locales
+        </a>
+    </aside>
+
+    <section class="tarjetas-locales categoria-locales">
+
+        {% for local in locales %}
+        <a href="{% url 'detalle_local' local.id %}" class="tarjeta-link">
+            <div class="tarjeta">
+
+                {% if local.imagen %}
+                    <img src="{{ local.imagen.url }}" class="imagen-local-real">
+                {% else %}
+                    <div class="imagen-local">🍽️</div>
+                {% endif %}
+
+                <h3>{{ local.nombre }}</h3>
+                <p>{{ local.categoria.nombre }}</p>
+                <span>⭐ {{ local.calificacion }} · {{ local.tiempo_entrega }}</span>
+
+            </div>
+        </a>
+        {% empty %}
+            <p>No hay locales asociados a esta categoría.</p>
+        {% endfor %}
+
+    </section>
+
+</main>
+
+{% endblock %}

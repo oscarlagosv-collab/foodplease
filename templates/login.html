@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="login-bg">
+
+    <div class="login-wrapper">
+
+        <!-- IZQUIERDA -->
+        <div class="glass-card">
+
+            <h2>Ingresar a mi cuenta</h2>
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <input type="text" name="username" placeholder="Usuario" required>
+
+                <div class="password-container">
+                    <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                    <button type="button" class="btn-ver-password" onclick="mostrarPassword()">👁️</button>
+                </div>
+
+                <button type="submit" class="btn-login">Ingresar</button>
+            </form>
+
+            <button class="btn-secundario" onclick="abrirRecuperarPassword()">
+                Recuperar contraseña
+            </button>
+
+            <a href="{% url 'registro' %}" class="btn-secundario btn-link">
+                Crear usuario
+            </a>
+
+        </div>
+
+        <script>
+        
+        function mostrarPassword() 
+        {
+            const input = document.getElementById("password");
+            const boton = document.querySelector(".btn-ver-password");if (input.type === "password") {
+                input.type = "text";
+                boton.textContent = "🙈";
+            } else {
+                input.type = "password";
+                boton.textContent = "👁️";
+            }
+        }
+            </script>
+
+        <!-- DERECHA -->
+        <div class="glass-card soporte-card">
+
+            <h2>Soporte</h2>
+
+            <p>Si necesitas ayuda para ingresar contáctanos a:</p>
+
+            <p><strong>soporte@foodplease.com</strong></p>
+            <p><strong>232754010</strong></p>
+
+            <br>
+
+            <p><strong>Horario de atención</strong></p>
+            <p>Lunes a viernes</p>
+            <p>09:30 - 17:00 hrs (horario continuado)</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<div id="modalRecuperar" class="modal">
+    <div class="modal-contenido">
+        <span onclick="cerrarRecuperarPassword()" class="cerrar">&times;</span>
+
+        <h3>Recuperar contraseña</h3>
+
+        <p>
+            Ingrese su correo electrónico y pulse enviar, y se le enviará una
+            contraseña temporal para que pueda acceder, la cuál posteriormente
+            la puede modificar.
+        </p>
+
+        <input type="email" placeholder="Correo electrónico">
+
+        <div class="acciones-modal">
+            <button type="button">Enviar</button>
+            <button type="button" onclick="cerrarRecuperarPassword()" class="btn-cancelar">
+                Cancelar
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+function abrirRecuperarPassword() {
+    document.getElementById("modalRecuperar").style.display = "block";
+}
+
+function cerrarRecuperarPassword() {
+    document.getElementById("modalRecuperar").style.display = "none";
+}
+</script>
+
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<main class="checkout-container">
+
+    <section class="checkout-detalle">
+        <h2>Detalle del carrito</h2>
+
+        {% if items %}
+            {% for item in items %}
+                <div class="carrito-producto">
+                    <div>
+                        <h3>{{ item.producto.nombre }}</h3>
+                        <p>{{ item.producto.descripcion }}</p>
+                        <p>Precio unitario: ${{ item.producto.precio }}</p>
+
+                        <div class="cantidad-controles">
+                            <a href="{% url 'disminuir_carrito' item.producto.id %}">-</a>
+                            <span>{{ item.cantidad }}</span>
+                            <a href="{% url 'aumentar_carrito' item.producto.id %}">+</a>
+                            <a href="{% url 'eliminar_carrito' item.producto.id %}" class="btn-eliminar">Eliminar</a>
+                        </div>
+                    </div>
+
+                    <strong>${{ item.subtotal }}</strong>
+                </div>
+            {% endfor %}
+
+            <div class="total-carrito">
+                <h3>Total: ${{ total }}</h3>
+            </div>
+        {% else %}
+            <p>Tu carrito está vacío.</p>
+        {% endif %}
+    </section>
+
+    <section class="checkout-invitado">
+        <h2>Comprar como invitado</h2>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="text" name="telefono" placeholder="Teléfono" required>
+            <input type="email" name="correo" placeholder="Correo electrónico" required>
+
+            <input 
+                type="text" 
+                id="direccionCheckout" 
+                name="direccion" 
+                placeholder="Dirección"
+                onkeyup="autocompletarDireccionCheckout()"
+                required
+            >
+
+            <div id="sugerenciasCheckout" class="sugerencias-direccion"></div>
+
+            <input type="text" id="comunaCheckout" name="comuna" placeholder="Comuna" readonly required>
+            <input type="text" id="regionCheckout" name="region" placeholder="Región" readonly required>
+
+            <button type="submit" class="btn-pagar">Ir a pagar</button>
+        </form>
+    </section>
+
+</main>
+
+<script src="{% static 'js/checkout.js' %}"></script>
+
+{% endblock %}
