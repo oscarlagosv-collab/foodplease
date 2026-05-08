@@ -1,0 +1,39 @@
+/* =========================================================
+4. FOOTER ESCRITORIO / MÓVIL
+========================================================= */
+
+.footer-escritorio {
+    background-color: #222;
+    color: white;
+    padding: 30px 20px;
+    text-align: center;
+    margin-top: auto;
+    flex-shrink: 0;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.footer-links a {
+    color: white;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.footer-links a:hover {
+    color: #ff4d6d;
+}
+
+.footer-copy {
+    font-size: 14px;
+    color: #bbb;
+}
+
+.footer-movil {
+    display: none;
+}

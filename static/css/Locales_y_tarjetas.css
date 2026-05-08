@@ -1,0 +1,59 @@
+/* =========================================================
+7. LOCALES Y TARJETAS
+========================================================= */
+
+.tarjetas-locales {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    padding: 0 0 50px 0;
+}
+
+.tarjeta-link {
+    color: inherit;
+    display: block;
+}
+
+.tarjeta {
+    height: 100%;
+    background-color: white;
+    border-radius: 18px;
+    padding: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+    text-align: center;
+    transition: 0.2s;
+    cursor: pointer;
+    border: 2px solid #e60023;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+}
+
+.imagen-local-real,
+.imagen-local {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-bottom: 12px;
+}
+
+.imagen-local {
+    background-color: #ffe4e8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 55px;
+}
+
+.tarjeta h3 {
+    margin: 0 0 10px;
+    font-size: 22px;
+}
+
+.tarjeta p {
+    color: #666;
+    font-size: 15px;
+}

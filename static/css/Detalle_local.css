@@ -1,0 +1,70 @@
+/* =========================================================
+8. DETALLE LOCAL
+========================================================= */
+
+.detalle-local-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 35px;
+    padding: 50px 20px;
+}
+
+.info-local {
+    background: white;
+    border: 2px solid #e60023;
+    border-radius: 20px;
+    padding: 22px;
+    height: fit-content;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+}
+
+.imagen-info-local {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 16px;
+    margin-bottom: 18px;
+}
+
+.info-local h2 {
+    margin-top: 0;
+    color: #e60023;
+}
+
+.descripcion-local {
+    line-height: 1.5;
+    color: #444;
+    margin-top: 12px;
+}
+
+.calificacion-local {
+    margin-top: 25px;
+}
+
+.estrellas-interactivas {
+    display: flex;
+    gap: 6px;
+    font-size: 34px;
+    cursor: pointer;
+}
+
+.estrellas-interactivas span {
+    color: #ccc;
+    transition: 0.2s;
+}
+
+.estrellas-interactivas span.activa {
+    color: #ffb400;
+}
+
+#mensajeCalificacion {
+    color: #e60023;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.sucursales-local {
+    width: 100%;
+}
+

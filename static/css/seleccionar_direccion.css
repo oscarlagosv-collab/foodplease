@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.pantalla-direccion {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #d60000, #ff2525);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-direccion {
+    width: 90%;
+    max-width: 480px;
+    padding: 35px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.28);
+    text-align: center;
+}
+
+.card-direccion h1 {
+    color: #d60000;
+    margin-bottom: 15px;
+}
+
+.card-direccion p {
+    color: #333;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.card-direccion label {
+    display: block;
+    text-align: left;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.card-direccion input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 15px;
+}
+
+.card-direccion button:hover {
+    background: #b80000;
+}
+
+.contenedor-autocomplete {
+    position: relative;
+}
+
+.sugerencias {
+    position: absolute;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    margin-top: 5px;
+    max-height: 220px;
+    overflow-y: auto;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.18);
+    z-index: 1000;
+}
+
+.item-sugerencia {
+    padding: 12px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.item-sugerencia:hover {
+    background: #f5f5f5;
+}
+
+.botones-direccion {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.botones-direccion > * {
+    flex: 1;
+}
+
+.boton-direccion {
+    flex: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #d60000;
+    color: white;
+
+    font-weight: bold;
+    font-size: 16px;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.boton-direccion:hover {
+    background: #b80000;
+}

@@ -3,14 +3,17 @@
 
 {% block content %}
 
-<!-- VERSIÓN ESCRITORIO -->
-<main class="principal-escritorio contenido">
+<main class="contenido">
+
     <h2>Categorías disponibles</h2>
 
     <section class="categorias">
+
         {% for categoria in categorias %}
             <a href="{% url 'locales_por_categoria' categoria.id %}" class="card-categoria-link">
+
                 <div class="card-categoria">
+
                     {% if categoria.imagen %}
                         <img src="{{ categoria.imagen.url }}" class="img-categoria">
                     {% else %}
@@ -18,28 +21,15 @@
                     {% endif %}
 
                     <p>{{ categoria.nombre }}</p>
+
                 </div>
+
             </a>
         {% empty %}
             <p>No hay categorías disponibles.</p>
         {% endfor %}
+
     </section>
-</main>
-
-<!-- VERSIÓN MÓVIL / TABLET -->
-<main class="principal-movil home-opciones">
-    
-    <a href="{% url 'categorias_movil' %}" class="home-card">
-        <div class="home-icono">🍔</div>
-        <h2>Categorías</h2>
-        <p>Explora por tipo de comida</p>
-    </a>
-
-    <a href="{% url 'locales' %}" class="home-card">
-        <div class="home-icono">🏪</div>
-        <h2>Locales</h2>
-        <p>Ver locales disponibles</p>
-    </a>
 
 </main>
 

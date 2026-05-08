@@ -1,0 +1,82 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #d60000, #ff2b2b);
+    font-family: Arial, sans-serif;
+}
+
+.contenedor-direccion {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-direccion {
+    width: 90%;
+    max-width: 480px;
+    padding: 35px;
+    border-radius: 22px;
+
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+    text-align: center;
+}
+
+.card-direccion h1 {
+    color: #d60000;
+    margin-bottom: 15px;
+}
+
+.card-direccion p {
+    color: #333;
+    margin-bottom: 25px;
+    line-height: 1.4;
+}
+
+.card-direccion label {
+    display: block;
+    text-align: left;
+    font-weight: bold;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    color: #222;
+}
+
+.card-direccion input {
+    width: 100%;
+    padding: 13px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+    font-size: 15px;
+}
+
+.card-direccion input:focus {
+    border-color: #d60000;
+}
+
+.card-direccion button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: #d60000;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.card-direccion button:hover {
+    background: #b80000;
+}

@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<main class="mis-datos-container">
+
+    <section class="mis-datos-card">
+
+        <h2>Mis datos</h2>
+
+        <form method="POST" id="formMisDatos">
+            {% csrf_token %}
+
+            <label>Nombre</label>
+            <input 
+                type="text" 
+                name="first_name" 
+                value="{{ request.user.first_name }}"
+                readonly
+            >
+
+            <label>Apellido</label>
+            <input 
+                type="text" 
+                name="last_name" 
+                value="{{ request.user.last_name }}"
+                readonly
+            >
+
+            <label>Nombre de usuario</label>
+            <input 
+                type="text" 
+                name="username" 
+                value="{{ request.user.username }}"
+                readonly
+            >
+
+            <label>Correo electrónico</label>
+            <input 
+                type="email" 
+                name="email" 
+                value="{{ request.user.email }}"
+                readonly
+            >
+
+            <label>Teléfono</label>
+            <input 
+                type="text" 
+                name="telefono" 
+                value="{{ perfil.telefono }}"
+                readonly
+            >
+
+            <label>Contraseña</label>
+            <input 
+                type="password" 
+                name="password" 
+                value="********"
+                readonly
+            >
+
+            <div class="acciones-datos">
+                <button type="button" id="btnModificarDatos">
+                    Modificar datos
+                </button>
+
+                <button type="submit" id="btnGuardarDatos" style="display: none;">
+                    Guardar cambios
+                </button>
+
+                <a href="{% url 'logout' %}" class="btn-cerrar-sesion">
+                    Cerrar sesión
+                </a>
+
+                <button type="button" id="btnEliminarUsuario" class="btn-eliminar-usuario">
+                    Eliminar usuario
+                </button>
+            </div>
+        </form>
+
+    </section>
+
+</main>
+
+<div id="modalEliminarUsuario" class="modal-eliminar">
+    <div class="modal-eliminar-card">
+        <p>
+            Si desea darse de baja de manera definitiva, pulse confirmar.
+        </p>
+
+        <p>
+            Gracias por su preferencia, FoodPlease.
+        </p>
+
+        <form method="POST" action="{% url 'eliminar_usuario' %}">
+            {% csrf_token %}
+
+            <div class="acciones-modal-eliminar">
+                <button type="submit" class="btn-confirmar-eliminar">
+                    Confirmar
+                </button>
+
+                <button type="button" id="btnCancelarEliminar" class="btn-cancelar-eliminar">
+                    Cancelar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="{% static 'js/mis_datos.js' %}"></script>
+
+{% endblock %}

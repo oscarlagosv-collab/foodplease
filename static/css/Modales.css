@@ -1,0 +1,80 @@
+/* =========================================================
+12. MODALES
+========================================================= */
+
+.modal,
+.modal-direccion,
+.modal-eliminar {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 9999;
+}
+
+.modal-direccion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-eliminar {
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-contenido,
+.modal-eliminar-card {
+    background: white;
+    width: 90%;
+    max-width: 480px;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    text-align: center;
+}
+
+.modal-contenido input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.modal-contenido button {
+    width: 100%;
+    margin-top: 22px;
+    padding: 13px;
+    background: #e60023;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.acciones-modal-eliminar {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.acciones-modal-eliminar button {
+    flex: 1;
+    padding: 13px;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-confirmar-eliminar {
+    background-color: #e60023;
+    color: white;
+}
+
+.btn-cancelar-eliminar {
+    background-color: #222;
+    color: white;
+}

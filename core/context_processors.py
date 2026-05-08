@@ -1,7 +1,7 @@
 from .models import Carrito
 
 
-def carrito_contador(request):
+def cantidad_carrito(request):
     cantidad = 0
 
     if request.user.is_authenticated:
@@ -14,9 +14,9 @@ def carrito_contador(request):
             cantidad = sum(item.cantidad for item in carrito.items.all())
 
     else:
-        carrito_sesion = request.session.get('carrito', {})
+        carrito_sesion = request.session.get("carrito", {})
         cantidad = sum(carrito_sesion.values())
 
     return {
-        'cantidad_carrito': cantidad
+        "cantidad_carrito": cantidad
     }

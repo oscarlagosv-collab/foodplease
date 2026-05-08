@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
@@ -6,17 +7,25 @@
     <div class="registro-box">
         <h2>Crear usuario</h2>
 
+        {% if messages %}
+            {% for message in messages %}
+                <p class="{{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
         <form method="POST">
             {% csrf_token %}
 
-            <input type="text" name="nombre" placeholder="Nombre completo" required>
-            <input type="text" name="usuario" placeholder="Nombre de usuario" required>
+            <input type="text" name="nombre_completo" placeholder="Nombre completo" required>
+            <input type="text" name="username" placeholder="Nombre de usuario" required>
             <input type="email" name="email" placeholder="Correo electrónico" required>
             <input type="text" name="telefono" placeholder="Teléfono" required>
             <input type="password" name="password1" placeholder="Contraseña" required>
             <input type="password" name="password2" placeholder="Confirmar contraseña" required>
 
-            <button type="submit" class="btn-login">Crear cuenta</button>
+            <button type="submit" class="btn-login">
+                Crear cuenta
+            </button>
         </form>
     </div>
 </main>

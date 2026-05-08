@@ -3,23 +3,92 @@
 
 {% block content %}
 
-<main class="contenido">
-    <h2>{{ local.nombre }}</h2>
+<main class="detalle-local-container">
 
-    <section class="tarjetas-locales">
-        {% for sucursal in sucursales %}
-        <a href="{% url 'detalle_sucursal' sucursal.id %}" class="tarjeta-link">
-            <div class="tarjeta">
-                <h3>{{ sucursal.nombre }}</h3>
-                <p><strong>Región:</strong> {{ sucursal.get_region_display }}</p>
-                <p><strong>Comuna:</strong> {{ sucursal.comuna }}</p>
-                <p><strong>Dirección:</strong> {{ sucursal.direccion }}</p>
-            </div>
-        </a>
-        {% empty %}
-            <p>Este local no tiene sucursales disponibles.</p>
-        {% endfor %}
+    <!-- PANEL IZQUIERDO -->
+
+    <aside class="info-local">
+
+        {% if local.imagen %}
+            <img 
+                src="{{ local.imagen.url }}"
+                alt="{{ local.nombre }}"
+                class="imagen-info-local"
+            >
+        {% endif %}
+
+        <h2>{{ local.nombre }}</h2>
+
+        <p class="descripcion-local">
+            {{ local.descripcion }}
+        </p>
+
+        <div class="calificacion-local">
+    <p>Califica este local</p>
+
+    {% if user.is_authenticated %}
+        <div 
+            class="estrellas-interactivas"
+            data-local-id="{{ local.id }}"
+            data-calificacion="{{ mi_calificacion }}">
+            <span data-valor="1">★</span>
+            <span data-valor="2">★</span>
+            <span data-valor="3">★</span>
+            <span data-valor="4">★</span>
+            <span data-valor="5">★</span>
+        </div>
+        <p id="mensajeCalificacion"></p>
+    {% else %}
+        <p>Debes iniciar sesión para calificar.</p>
+    {% endif %}
+
+    <p>
+        Promedio actual: 
+        <strong id="promedioLocal">{{ promedio }}</strong> / 5
+    </p>
+</div>
+
+    </aside>
+
+    <!-- PANEL DERECHO -->
+
+    <section class="sucursales-local">
+
+        <h2>Sucursales disponibles</h2>
+
+        <div class="tarjetas-locales">
+
+            {% for sucursal in sucursales %}
+                <a href="{% url 'detalle_sucursal' sucursal.id %}" class="tarjeta-link">
+
+                    <div class="tarjeta">
+
+                        <div class="imagen-local">
+                            🏪
+                        </div>
+
+                        <h3>{{ sucursal.nombre }}</h3>
+
+                        <p>{{ sucursal.direccion }}</p>
+
+                        <p>
+                            {{ sucursal.comuna }}
+                        </p>
+
+                    </div>
+
+                </a>
+
+            {% empty %}
+                <p>No hay sucursales disponibles.</p>
+            {% endfor %}
+
+        </div>
+
     </section>
+
 </main>
+
+<script src="{% static 'js/calificacion_local.js' %}"></script>
 
 {% endblock %}

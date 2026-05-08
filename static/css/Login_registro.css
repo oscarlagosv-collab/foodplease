@@ -1,0 +1,103 @@
+/* =========================================================
+10. LOGIN / REGISTRO
+========================================================= */
+
+.login-bg,
+.registro-container {
+    min-height: calc(100vh - 85px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+.login-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    width: 100%;
+    max-width: 1100px;
+    padding: 40px;
+}
+
+.glass-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 20px;
+    padding: 40px;
+    color: black;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.glass-card input,
+.registro-box input,
+.login-box input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.registro-box {
+    width: 430px;
+    background-color: #f8f8f8;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+}
+
+.registro-box h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.btn-login,
+.btn-secundario {
+    width: 100%;
+    background-color: #e60023;
+    color: white;
+    padding: 14px;
+    border-radius: 25px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 12px;
+    display: block;
+    text-align: center;
+}
+
+.btn-secundario {
+    background-color: #333;
+}
+
+.error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+.password-container {
+    position: relative;
+    width: 100%;
+}
+
+.password-container input {
+    padding-right: 50px;
+}
+
+.btn-ver-password {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    background: none;
+    border: none;
+    color: #333;
+    cursor: pointer;
+}
+
+.soporte-card {
+    text-align: left;
+}
+

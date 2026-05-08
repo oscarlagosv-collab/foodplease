@@ -1,0 +1,131 @@
+/* =========================================================
+14. RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+    .detalle-local-container,
+    .contenido-categoria,
+    .checkout-container,
+    .login-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .categorias,
+    .tarjetas-locales {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+    .checkout-container {
+        padding: 0 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .barra-superior {
+        height: auto;
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .titulo-logo {
+        font-size: 24px;
+    }
+
+    .principal-escritorio {
+        display: none !important;
+    }
+
+    .principal-movil {
+        display: grid !important;
+    }
+
+    .home-opciones {
+        grid-template-columns: 1fr;
+        padding: 45px 20px 110px;
+    }
+
+    .home-card {
+        min-height: 210px;
+    }
+
+    .footer-escritorio {
+        display: none;
+    }
+
+    .footer-movil {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 78px;
+        background: #222;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        z-index: 999;
+    }
+
+    .footer-movil a {
+        color: white;
+        font-weight: bold;
+        font-size: 13px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+    }
+
+    .footer-movil a:hover {
+        background: #e60023;
+    }
+
+    body {
+        padding-bottom: 78px;
+    }
+
+    .nav-escritorio {
+    display: none !important;
+    }
+
+}
+
+@media (max-width: 550px) {
+    .barra-superior {
+        grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .contenedor-comuna,
+    .logo-link,
+    .btn-entrar,
+    .usuario-menu {
+        justify-self: center;
+    }
+
+    .categorias,
+    .tarjetas-locales {
+        grid-template-columns: 1fr !important;
+    }
+
+    .carrito-producto,
+    .carrito-item {
+        flex-direction: column;
+    }
+
+    .cantidad-controles {
+        flex-wrap: wrap;
+    }
+
+    .glass-card,
+    .registro-box,
+    .modal-contenido,
+    .mis-datos-card {
+        width: 100%;
+        padding: 25px;
+    }
+
+    .login-bg,
+    .registro-container {
+        padding: 20px;
+    }
+}

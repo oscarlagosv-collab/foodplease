@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>FoodPlease</title>
+    <link rel="stylesheet" href="{% static 'css/seleccionar_direccion.css' %}">
+</head>
+<body>
+
+<div class="pantalla-direccion">
+    <div class="card-direccion">
+        <h1>¡Bienvenidos a FoodPlease!</h1>
+
+        <p>
+            Ingresa tu dirección de despacho para poder ofrecerte todo lo que tenemos para ti.
+        </p>
+
+        <label>Dirección</label>
+
+        <div class="contenedor-autocomplete">
+            <input 
+                type="text" 
+                id="direccionInput" 
+                placeholder="Ingresa tu dirección" 
+                autocomplete="off"
+            >
+
+            <div id="sugerenciasDireccion" class="sugerencias"></div>
+        </div>
+
+        <label>Comuna</label>
+        <input type="text" id="comunaInput" readonly>
+
+        <label>Región</label>
+        <input type="text" id="regionInput" readonly>
+
+        <div class="botones-direccion">
+            
+            <button id="confirmarDireccion" type="button" class="boton-direccion">
+                Confirmar dirección
+            </button>
+            
+            <a href="{% url 'principal' %}" class="boton-direccion" onclick="localStorage.setItem('modoVitrina', 'true'); localStorage.removeItem('direccionCliente'); localStorage.removeI('comunaCliente'); localStorage.removeItem('regionCliente');">
+                Solo vitrinear
+            </a>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/seleccionar_direccion.js' %}"></script>
+
+</body>
+</html>

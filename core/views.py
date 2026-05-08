@@ -1,15 +1,31 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login, logout
-from .models import Local, Categoria, Sucursal, ProductoMenu, Carrito, ItemCarrito
-
+from django.contrib.auth import authenticate, login, logout, update_session_auth_hash
+from .models import Local, Categoria, Sucursal, ProductoMenu, Carrito, ItemCarrito, PerfilCliente, CalificacionLocal
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.http import JsonResponse
+from django.db.models import Avg
 
 def principal(request):
+
+    comuna = request.GET.get("comuna")
+
     categorias = Categoria.objects.filter(activo=True)
 
-    return render(request, 'principal.html', {
-        'categorias': categorias
-    })
+    if comuna:
+        locales = Local.objects.filter(
+            sucursales__comuna__icontains=comuna,
+            activo=True
+        ).distinct()
+    else:
+        locales = Local.objects.filter(activo=True)
 
+    return render(request, "principal.html", {
+        "categorias": categorias,
+        "locales": locales,
+        "comuna": comuna
+    })
 
 def locales(request):
     locales = Local.objects.filter(activo=True)
@@ -99,15 +115,72 @@ def logout_view(request):
 
 
 def registro(request):
-    return render(request, 'registro.html')
+    if request.method == "POST":
+        nombre_completo = request.POST.get("nombre_completo")
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        telefono = request.POST.get("telefono")
+        password1 = request.POST.get("password1")
+        password2 = request.POST.get("password2")
+
+        if password1 != password2:
+            messages.error(request, "Las contraseñas no coinciden.")
+            return redirect("registro")
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "El nombre de usuario ya existe.")
+            return redirect("registro")
+
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "El correo electrónico ya está registrado.")
+            return redirect("registro")
+
+        partes_nombre = nombre_completo.split(" ", 1)
+        first_name = partes_nombre[0]
+        last_name = partes_nombre[1] if len(partes_nombre) > 1 else ""
+
+        usuario = User.objects.create_user(
+            username=username,
+            email=email,
+            password=password1,
+            first_name=first_name,
+            last_name=last_name
+        )
+
+        PerfilCliente.objects.create(
+            usuario=usuario,
+            telefono=telefono
+        )
+
+        messages.success(request, "Usuario creado correctamente. Ahora puedes iniciar sesión.")
+        return redirect("login")
+
+    return render(request, "registro.html")
 
 def detalle_local(request, local_id):
     local = get_object_or_404(Local, id=local_id, activo=True)
     sucursales = Sucursal.objects.filter(local=local, activo=True)
 
+    promedio = local.calificaciones.aggregate(
+        promedio=Avg("estrellas")
+    )["promedio"] or 0
+
+    mi_calificacion = 0
+
+    if request.user.is_authenticated:
+        calificacion = CalificacionLocal.objects.filter(
+            local=local,
+            usuario=request.user
+        ).first()
+
+        if calificacion:
+            mi_calificacion = calificacion.estrellas
+
     return render(request, 'detalle_local.html', {
         'local': local,
-        'sucursales': sucursales
+        'sucursales': sucursales,
+        'promedio': round(promedio, 1),
+        'mi_calificacion': mi_calificacion
     })
 
 def detalle_sucursal(request, sucursal_id):
@@ -219,3 +292,80 @@ def eliminar_carrito(request, producto_id):
         request.session.modified = True
 
     return redirect('carrito')
+
+def seleccionar_direccion(request):
+    return render(request, "seleccionar_direccion.html")
+
+@login_required
+def mis_datos(request):
+    perfil, creado = PerfilCliente.objects.get_or_create(usuario=request.user)
+
+    if request.method == "POST":
+        user = request.user
+
+        user.first_name = request.POST.get("first_name")
+        user.last_name = request.POST.get("last_name")
+        user.username = request.POST.get("username")
+        user.email = request.POST.get("email")
+
+        nueva_password = request.POST.get("password")
+
+        if nueva_password:
+            user.set_password(nueva_password)
+            update_session_auth_hash(request, user)
+
+        user.save()
+
+        perfil.telefono = request.POST.get("telefono")
+        perfil.save()
+
+        return redirect("mis_datos")
+
+    return render(request, "mis_datos.html", {
+        "perfil": perfil
+    })
+
+
+@login_required
+def eliminar_usuario(request):
+    if request.method == "POST":
+        user = request.user
+        logout(request)
+        user.delete()
+        return redirect("seleccionar_direccion")
+
+    return redirect("mis_datos")
+
+@login_required
+def calificar_local(request, local_id):
+    if request.method == "POST":
+        estrellas = int(request.POST.get("estrellas", 0))
+
+        if estrellas < 1 or estrellas > 5:
+            return JsonResponse({"ok": False, "error": "Calificación inválida"})
+
+        local = get_object_or_404(Local, id=local_id, activo=True)
+
+        CalificacionLocal.objects.update_or_create(
+            local=local,
+            usuario=request.user,
+            defaults={"estrellas": estrellas}
+        )
+
+        promedio = local.calificaciones.aggregate(
+            promedio=Avg("estrellas")
+        )["promedio"]
+
+        return JsonResponse({
+            "ok": True,
+            "promedio": round(promedio, 1)
+        })
+
+    return JsonResponse({"ok": False, "error": "Método no permitido"})
+
+def categorias_movil(request):
+    categorias = Categoria.objects.filter(activo=True)
+
+    return render(request, 'categorias_movil.html', {
+        'categorias': categorias
+    })

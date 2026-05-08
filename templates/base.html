@@ -2,26 +2,53 @@
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>FoodPlease</title>
-    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'css/Base_general.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Menu_usuario.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Footer_escritorio_movil.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Pagina_principal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Categorias.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Locales_y_tarjetas.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Detalle_local.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Carrito_checkout.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Login_registro.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Mis_datos.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Modales.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Nosotros.css' %}">
+    <link rel="stylesheet" href="{% static 'css/Responsive.css' %}">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
 
 <header class="barra-superior">
 
-    <button class="btn-direccion">📍 Ingresa tu dirección</button>
-    
+    <div class="contenedor-comuna">
+        <button id="btnComunaCliente" class="btn-comuna">
+            👀 Vitrineando
+        </button>
+
+        <div id="menuComuna" class="menu-comuna">
+            <p id="direccionActual"></p>
+            <button id="cambiarDireccion">Cambiar datos de entrega</button>
+        </div>
+    </div>
+
     <a href="{% url 'principal' %}" class="logo-link">
         <h1 class="titulo-logo">FoodPlease</h1>
     </a>
 
-    <nav class="nav-menu">
+    <nav class="nav-escritorio">
 
-        <a href="{% url 'carrito' %}">
+        <a href="{% url 'carrito' %}" class="link-carrito">
             🛒 Carrito
+            
             {% if cantidad_carrito > 0 %}
             <span class="contador-carrito">{{ cantidad_carrito }}</span>
             {% endif %}
@@ -31,34 +58,54 @@
         <a href="{% url 'nosotros' %}">👋 Nosotros</a>
 
         {% if user.is_authenticated %}
-    <span class="usuario">👤 {{ user.username }}</span>
-    <a href="{% url 'logout' %}" class="btn-entrar">Salir</a>
-    
-    {% else %}
-    {% if request.resolver_match.url_name != 'login' %}
-        <a href="{% url 'login' %}" class="btn-entrar">Entrar</a>
-    {% endif %}
-    {% endif %}
+            <div class="usuario-menu">
+                <button id="btnUsuario" class="usuario-btn">
+                    👤 {{ user.username }}
+                </button>
 
+                <div id="dropdownUsuario" class="dropdown-usuario">
+                    <a href="{% url 'mis_datos' %}">Mis datos</a>
+                    <a href="{% url 'logout' %}">Salir</a>
+                </div>
+            </div>
+        {% else %}
+            <a href="{% url 'login' %}">Entrar</a>
+        {% endif %}
     </nav>
 
 </header>
 
 {% block content %}
-
 {% endblock %}
 
-<footer class="footer">
+<!-- FOOTER ESCRITORIO -->
+
+<footer class="footer-escritorio">
 
     <div class="footer-links">
-        <a href="{% url 'principal' %}">Página principal</a>
-        <a href="{% url 'locales' %}">Locales</a>
-        <a href="{% url 'carrito' %}">Carrito</a>
-        <a href="{% url 'nosotros' %}">Nosotros</a>
+
+        <a href="{% url 'principal' %}">
+            Página principal
+        </a>
+
+        <a href="{% url 'locales' %}">
+            Locales
+        </a>
+
+        <a href="{% url 'carrito' %}">
+            Carrito
+        </a>
+
+        <a href="{% url 'nosotros' %}">
+            Nosotros
+        </a>
 
         {% if not user.is_authenticated %}
-            <a href="{% url 'login' %}">Entrar</a>
+            <a href="{% url 'login' %}">
+                Entrar
+            </a>
         {% endif %}
+
     </div>
 
     <p class="footer-copy">
@@ -66,6 +113,43 @@
     </p>
 
 </footer>
+
+
+<!-- FOOTER MÓVIL -->
+
+<footer class="footer-movil">
+
+    <a href="{% url 'login' %}">
+        👤
+        <span>Entrar</span>
+    </a>
+
+    <a href="{% url 'locales' %}">
+        🏪
+        <span>Locales</span>
+    </a>
+
+    <a href="{% url 'carrito' %}" class="footer-carrito">
+        <span class="icono-carrito-movil">
+            🛒
+            
+            {% if cantidad_carrito > 0 %}
+            <span class="contador-carrito-movil">{{ cantidad_carrito }}</span>
+            {% endif %}
+        </span>
+        
+        <span>Carrito</span>
+    </a>
+
+    <a href="{% url 'nosotros' %}">
+        👋
+        <span>Nosotros</span>
+    </a>
+
+</footer>
+
+<script src="{% static 'js/usuario_menu.js' %}"></script>
+<script src="{% static 'js/ubicacion.js' %}"></script>
 
 </body>
 </html>

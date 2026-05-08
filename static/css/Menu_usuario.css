@@ -1,0 +1,31 @@
+/* =========================================================
+3. MENÚ USUARIO
+========================================================= */
+
+.usuario-menu {
+    position: relative;
+}
+
+.dropdown-usuario {
+    display: none;
+    position: absolute;
+    top: 48px;
+    right: 0;
+    background: white;
+    border-radius: 14px;
+    min-width: 160px;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.dropdown-usuario a {
+    display: block;
+    padding: 12px 16px;
+    color: #e60023;
+    font-weight: bold;
+}
+
+.dropdown-usuario a:hover {
+    background: #ffe4e8;
+}

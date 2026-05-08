@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Local, Sucursal, ProductoMenu, Categoria
+from .models import Local, Sucursal, ProductoMenu, Categoria, PerfilCliente
 
 class SucursalInline(admin.TabularInline):
     model = Sucursal
@@ -46,3 +46,8 @@ class AdminCustom(admin.ModelAdmin):
         css = {
             'all': ('css/admin_custom.css',)
         }
+
+@admin.register(PerfilCliente)
+class PerfilClienteAdmin(admin.ModelAdmin):
+    list_display = ('usuario', 'telefono')
+    search_fields = ('usuario__username', 'usuario__first_name', 'usuario__email', 'telefono')

@@ -1,37 +1,59 @@
-function abrirUbicacion() {
-    document.getElementById("modalUbicacion").style.display = "block";
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const comuna = localStorage.getItem("comunaCliente");
+    const direccion = localStorage.getItem("direccionCliente");
+    const region = localStorage.getItem("regionCliente");
+    const modoVitrina = localStorage.getItem("modoVitrina");
 
-function cerrarUbicacion() {
-    document.getElementById("modalUbicacion").style.display = "none";
-}
+    const btnComuna = document.getElementById("btnComunaCliente");
+    const menuComuna = document.getElementById("menuComuna");
+    const direccionActual = document.getElementById("direccionActual");
+    const cambiarDireccion = document.getElementById("cambiarDireccion");
 
-function buscarDireccion() {
-    let direccion = document.getElementById("direccion").value;
-    let sugerencias = document.getElementById("sugerencias");
+    if (!btnComuna) return;
 
-    if (direccion.length < 3) {
-        sugerencias.innerHTML = "";
-        return;
-    }
+    // CASO 1: Cliente ingresó dirección
+    if (comuna && direccion && region) {
+        btnComuna.textContent = `📍 ${comuna}`;
 
-    sugerencias.innerHTML = `
-        <p>📍 ${direccion}, Santiago</p>
-        <p>📍 ${direccion}, Providencia</p>
-        <p>📍 ${direccion}, Maipú</p>
-    `;
-}
+        if (direccionActual) {
+            direccionActual.textContent = `${direccion}, ${comuna}, ${region}`;
+        }
 
-function usarLocalizacionActual() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            let latitud = position.coords.latitude;
-            let longitud = position.coords.longitude;
-
-            document.getElementById("resultadoUbicacion").innerHTML =
-                "Ubicación detectada: Lat " + latitud + ", Lon " + longitud;
+        btnComuna.addEventListener("click", function () {
+            if (menuComuna) {
+                menuComuna.style.display =
+                    menuComuna.style.display === "block" ? "none" : "block";
+            }
         });
-    } else {
-        alert("Tu navegador no permite geolocalización.");
     }
-}
+
+    // CASO 2: Cliente entró como vitrina
+    else if (modoVitrina === "true") {
+        btnComuna.textContent = "👀 Vitrineando";
+
+        btnComuna.addEventListener("click", function () {
+            localStorage.removeItem("modoVitrina");
+            window.location.href = "/";
+        });
+    }
+
+    // CASO 3: No hay datos
+    else {
+        btnComuna.textContent = "📍 Dirección";
+
+        btnComuna.addEventListener("click", function () {
+            window.location.href = "/";
+        });
+    }
+
+    if (cambiarDireccion) {
+        cambiarDireccion.addEventListener("click", function () {
+            localStorage.removeItem("direccionCliente");
+            localStorage.removeItem("comunaCliente");
+            localStorage.removeItem("regionCliente");
+            localStorage.removeItem("modoVitrina");
+
+            window.location.href = "/";
+        });
+    }
+});
